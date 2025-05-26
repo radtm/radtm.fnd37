@@ -1,3 +1,4 @@
+let upPressed = false;
 let rightPressed = false;
 let leftPressed = false;
 const brickRowCount = 3;
@@ -19,6 +20,17 @@ for (let c = 0; c < brickColumnCount; c++) {
 }
 
 function collisionPaddle() {
+if (
+  x > paddleX &&
+  x < paddleX + paddleWidth &&
+  y > canvas.height - (paddleHeight + 30) &&
+  y < canvas.height - (paddleHeight + 30) + paddleHeight
+) {
+  dy = -dy;
+}
+}
+
+function collisionBat() {
 if (
   x > paddleX &&
   x < paddleX + paddleWidth &&
@@ -53,3 +65,29 @@ function collisionDetection() {
     }
   }
 }
+
+// function moveBall() {
+//   if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+//     dx = -dx;
+//   }
+//   if (y + dy < ballRadius) {
+//     dy = -dy;
+//   } else if (y + dy > canvas.height - ballRadius) {
+//     if (x > paddleX && x < paddleX + paddleWidth) {
+//       dy = -dy;
+//     } else {
+//       lives--;
+//       if (!lives) {
+//         alert("GAME OVER");
+//         document.location.reload();
+//         // clearInterval(interval); // クロームがゲームを終了するのに必要
+//       } else {
+//         x = canvas.width / 2;
+//         y = canvas.height - 30;
+//         dx = 2;
+//         dy = -2;
+//         paddleX = (canvas.width - paddleWidth) / 2;
+//       }
+//     }
+//   }
+// }
