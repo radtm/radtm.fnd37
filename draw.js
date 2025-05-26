@@ -4,7 +4,6 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 // const canvas = document.getElementById("canvas");        
-let imagePath = "imgs/24160576_resize.png";
 let ball = 3;
 let strike = 2;
 let out = 2;
@@ -19,9 +18,15 @@ let y = 0;
 let dx = 0;
 let dy = 2;
 const ballRadius = 10;
+let score = 0;
+
+function setUp() {
+  drawStudiam();
+}
 
 // drawStudiam(imagePath);
-function drawStudiam (imagePath) {
+function drawStudiam () {
+  let imagePath = "imgs/24160576_resize.png";
   // console.log("draw");
   // const image = new Image();
   image.addEventListener ("load", function () {
@@ -44,25 +49,25 @@ function drawStudiam (imagePath) {
 }
 
 function drawScore() {
-  ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
-  ctx.fillText(`Score: ${score}`, 8, 20);
+  ctx.font = "32px Arial";
+  ctx.fillStyle = "white";
+  ctx.fillText(`Score: ${score}`, 20, canvas.height - 30);
 }
 
 function drawCounts() {
   ctx.font = "32px Arial";
   // ctx.fillStyle = "#0095DD";
   ctx.fillStyle = "white";
-  ctx.fillText(`B: ${ball}`, canvas.width - 100, canvas.height - 90);
-  ctx.fillText(`S: ${strike}`, canvas.width - 100, canvas.height - 60);
-  ctx.fillText(`O: ${out}`, canvas.width - 100, canvas.height - 30);
+  ctx.fillText(`B: ${ball}`, canvas.width - 80, canvas.height - 90);
+  ctx.fillText(`S: ${strike}`, canvas.width - 80, canvas.height - 60);
+  ctx.fillText(`O: ${out}`, canvas.width - 83, canvas.height - 30);
 }
 
 function drawBall() {
   ctx.beginPath();
   // ctx.arc(x, y, 10, 0, Math.PI * 2);
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = "white";
   ctx.fill();
   ctx.closePath();
 }
@@ -75,10 +80,10 @@ function drawBall() {
   //   ctx.closePath();
   //}
 
-function drawPaddle() {
+function drawBat() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - (paddleHeight + 200), paddleWidth, paddleHeight);
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = "black";
   ctx.fill();
   ctx.closePath();
 }
@@ -101,30 +106,54 @@ function drawPaddle() {
 //   }
 // }
 
-function drawBricks() {
-  for (let c = 0; c < brickColumnCount; c++) {
-    for (let r = 0; r < brickRowCount; r++) {
-      if (bricks[c][r].status === 1) {
-        const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
-        const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
-        bricks[c][r].x = brickX;
-        bricks[c][r].y = brickY;
-        ctx.beginPath();
-        ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "#0095DD";
-        ctx.fill();
-        ctx.closePath();
-      }
-    }
-  }
+// function drawBricks() {
+//   for (let c = 0; c < brickColumnCount; c++) {
+//     for (let r = 0; r < brickRowCount; r++) {
+//       if (bricks[c][r].status === 1) {
+//         const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+//         const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+//         bricks[c][r].x = brickX;
+//         bricks[c][r].y = brickY;
+//         ctx.beginPath();
+//         ctx.rect(brickX, brickY, brickWidth, brickHeight);
+//         ctx.fillStyle = "#0095DD";
+//         ctx.fill();
+//         ctx.closePath();
+//       }
+//     }
+//   }
+// }
+
+function positionFielding(positionX, positionY, fieldRadius) {
+  // bricks[c][r].x = brickX;
+  // bricks[c][r].y = brickY;
+  ctx.beginPath();
+  ctx.arc(positionX, positionY, fieldRadius, 0, Math.PI * 2);
+  ctx.fillStyle = "red";
+  ctx.fill();
+  ctx.closePath();
+}
+
+function drawFielding() {
+  const fieldRadius = 15;
+  const catcher = positionFielding((canvas.width - (fieldRadius / 2)) / 2, canvas.height - 140, fieldRadius);
+  const center = positionFielding((canvas.width - (fieldRadius / 2)) / 2, 80, fieldRadius);
+  const right = positionFielding(canvas.width - 200, 150, fieldRadius);
+  const left = positionFielding(200, 150, fieldRadius);
+  const picher = positionFielding((canvas.width - (fieldRadius / 2)) / 2, canvas.height - 410, fieldRadius);
+  const first = positionFielding(canvas.width - 380, canvas.height - 410, fieldRadius);
+  const second = positionFielding(canvas.width - 410, canvas.height - 550, fieldRadius);
+  const short = positionFielding(410, canvas.height - 550, fieldRadius);
+  const third = positionFielding(380, canvas.height - 410, fieldRadius);
 }
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawStudiam(imagePath);
-  drawBricks();
+  drawStudiam();
+  // drawBricks();
+  drawFielding();
   drawBall();
-  drawPaddle();
+  drawBat();
   drawScore();
   drawCounts();
   collisionDetection();
