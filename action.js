@@ -31,14 +31,10 @@ if (
 }
 
 function collisionBat() {
-if (
-  x > paddleX &&
-  x < paddleX + paddleWidth &&
-  y > canvas.height - (paddleHeight + 30) &&
-  y < canvas.height - (paddleHeight + 30) + paddleHeight
-) {
-  dy = -dy;
-}
+  if (y > canvas.height - 140 && y < canvas.height - 240 &&
+    upPressed === true) {
+    dy = -dy;
+  }
 }
 
 function collisionDetection() {
