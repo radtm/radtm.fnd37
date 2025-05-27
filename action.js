@@ -1,4 +1,5 @@
 let upPressed = false;
+let hit = false;
 let rightPressed = false;
 let leftPressed = false;
 const brickRowCount = 3;
@@ -30,10 +31,31 @@ if (
 }
 }
 
+// function collisionBat() {
+//   // if (y > canvas.height - 140 && y < canvas.height - 240 &&
+//   //   upPressed === true) {
+//   //   dy = -dy;
+//   if (170 > batAngle && batAngle > 80) {
+//     if (canvas.height - 300 < (y + dy) && (y + dy) < canvas.height - 260) {
+//       console.log(canvas.height - 290, (y + dy))
+//       // hit = true;
+//       dx = -2;
+//     } else if (canvas.height - 140 < (y + dy) && (y + dy) < canvas.height - 200) { 
+//       dx = 2;
+//     }
+//     dy = -dy
+//   }
+// }
+
 function collisionBat() {
-  if (y > canvas.height - 140 && y < canvas.height - 240 &&
-    upPressed === true) {
-    dy = -dy;
+  // if (batAngle < 180 && batAngle > 20){
+  dy = -dy;
+  // }
+}
+
+function hitBall() {
+  if (hit === true) {
+    dy++;
   }
 }
 

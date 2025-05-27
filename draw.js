@@ -204,7 +204,8 @@ function draw() {
   drawBat();
   drawScore();
   drawCounts();
-  collisionBat();
+  // hitBall();
+  // collisionBat();
 
   if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
     dx = -dx;
@@ -213,6 +214,9 @@ function draw() {
   //   dy = -dy;
   // }
   if (y + dy < ballRadius) {
+    // dy = -dy;
+    alert("ヒット！！");
+    y = canvas.height / 2;
     dy = -dy;
   // } else if (y + dy > canvas.height - ballRadius) {
   } else if (y + dy > (canvas.height - 140)) {
@@ -241,6 +245,7 @@ function draw() {
 
   if (upPressed) {
     batAngle = Math.min(batAngle + 20, 180);
+    collisionBat();
   } else {
     batAngle = 0;
   }

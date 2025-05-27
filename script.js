@@ -8,6 +8,8 @@ let y = 0;
 let paddleX = 0;
 const paddleWidth = 75;
 
+alert("野球盤ゲーム　スタート！！");
+
 image.addEventListener ("load", function () {
   canvas.width = image.naturalWidth;
   canvas.height = image.naturalHeight;
