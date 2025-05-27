@@ -48,9 +48,11 @@ if (
 // }
 
 function collisionBat() {
-  // if (batAngle < 180 && batAngle > 20){
-  dy = -dy;
-  // }
+  if (upPressed) {
+    if (((canvas.height / 2) + 100) < (y + dy)){
+      dy = -(Math.abs(dy));
+    }
+  }
 }
 
 function hitBall() {

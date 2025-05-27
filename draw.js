@@ -204,6 +204,7 @@ function draw() {
   drawBat();
   drawScore();
   drawCounts();
+  collisionBat();
   // hitBall();
   // collisionBat();
 
@@ -244,8 +245,8 @@ function draw() {
   } 
 
   if (upPressed) {
-    batAngle = Math.min(batAngle + 20, 180);
-    collisionBat();
+    batAngle = Math.min(batAngle + 30, 180);
+    // collisionBat();
   } else {
     batAngle = 0;
   }
