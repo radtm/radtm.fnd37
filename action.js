@@ -51,6 +51,7 @@ function collisionBat() {
   if (upPressed) {
     if (((canvas.height / 2) + 100) < (y + dy)){
       dy = -(Math.abs(dy));
+      console.log(y + dy);
     }
   }
 }

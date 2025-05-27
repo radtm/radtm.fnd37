@@ -82,13 +82,25 @@ function drawScore() {
   ctx.fillText(`Score: ${score}`, 20, canvas.height - 30);
 }
 
+function count(num) {
+  let result = "";
+  for (let i = 0; i < num; i++) {
+    result = result + "●";
+  }
+  return result;
+}
+
 function drawCounts() {
   ctx.font = "32px Arial";
   // ctx.fillStyle = "#0095DD";
   ctx.fillStyle = "white";
-  ctx.fillText(`B: ${ball}`, canvas.width - 80, canvas.height - 90);
-  ctx.fillText(`S: ${strike}`, canvas.width - 80, canvas.height - 60);
-  ctx.fillText(`O: ${out}`, canvas.width - 83, canvas.height - 30);
+  ctx.fillStyle = "lightgreen";
+  // ctx.fillText(`B: ${ball}`, canvas.width - 80, canvas.height - 90);
+  ctx.fillText(`B: ${count(ball)}`, canvas.width - 120, canvas.height - 90);
+  ctx.fillStyle = "yellow";
+  ctx.fillText(`S: ${count(strike)}`, canvas.width - 120, canvas.height - 60);
+  ctx.fillStyle = "red";
+  ctx.fillText(`O: ${count(out)}`, canvas.width - 123, canvas.height - 30);
 }
 
 function drawBall() {
